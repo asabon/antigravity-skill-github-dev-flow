@@ -20,3 +20,6 @@ git submodule add https://github.com/asabon/antigravity-skill-github-dev-flow .a
 - `SKILL.md`: エージェント向けの命令定義
 - `scripts/`: スキルを補助するスクリプト（予定）
 - `examples/`: 参考テンプレートなど
+
+## 開発・貢献の仕方
+このスキルの改善や不具合修正にご協力いただける場合は、[CONTRIBUTING.md](./CONTRIBUTING.md) をご覧ください。
