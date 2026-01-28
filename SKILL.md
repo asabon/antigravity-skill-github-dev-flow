@@ -21,10 +21,9 @@ Issue の起票、作業ブランチの作成、実装、コミット、そし�
 
 ### 2. ブランチの作成と紐付け (Branching & Linking)
 `gh issue develop` コマンドを使用して、Issue に紐付いた作業用ブランチを作成します。
-- コマンド例: `gh issue develop <Issue番号> --name "<short-description>" --base main --checkout`
-- `--base main` を指定することで、確実に `main` ブランチから派生させます（省略時はリポジトリのデフォルトブランチになります）。
+- コマンド例: `gh issue develop <Issue番号> --name "<Issue番号>-<short-description>" --base main --checkout`
+  - **重要**: `--name` 引数には、必ず **Issue 番号を含めた形式** (`xxx-short-description`) を指定してください。自動的には付与されません。
 - これにより、GitHub 上で Issue とブランチが明示的に紐付き、進捗状況が管理しやすくなります。
-- ブランチ名は `xxx-short-description` の形式を推奨します。
 
 ### 3. 実装と進捗管理 (Implementation & Tracking)
 - `examples/task_template.md` を参考に **`docs/progress/task.md`** を更新し、現在のタスクを管理する。
@@ -42,10 +41,10 @@ Issue の起票、作業ブランチの作成、実装、コミット、そし�
 
 ### 5. プルリクエストの作成 (PR Creation)
 `gh pr create` を使用して PR を作成します。
-- **作成前の確認事項**:
-  - 対応する **Issue のタスクがすべて完了（チェック済み）**になっていることを確認する。
-  - PR 本文のチェックリストも、作成時に**すべて完了状態**で作成する。
-  - **`docs/progress/task.md` の削除**: `main` ブランチをクリーンに保ち、他の並行作業との衝突（マージコンフリクト）を避けるため、PR 作成用の最後のコミット、または PR 作成直前に `task.md` を削除します。完了の証跡は GitHub の Issue と PR 本文に残ります。
+- **作成前の確認事項（この順序を守ること）**:
+  1. 対応する **Issue のタスクがすべて完了（チェック済み）**になっていることを確認する。
+  2. **`docs/progress/task.md` の削除とコミット**: `main` ブランチをクランチに保つため、`task.md` を物理的に削除し、その削除を `git add` および `git commit` で記録し、リモートブランチへプッシュする。
+  3. PR 本文のチェックリストも、作成時に**すべて完了状態**で作成する。
 - タイトルに Issue ID を含める。
 - 本文には `examples/pr_template.md` を使用し、`Fixes #xxx` を含めて Issue と紐付ける。
 - 実装内容と検証結果を簡潔に記載する。
